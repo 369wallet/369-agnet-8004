@@ -1,0 +1,65 @@
+{
+    "name": "369 Wallet Agent",
+    "version": "1.0.0",
+    "operator": "0x1Fd0e803880C9A952d3751Eadfc7653927EcaE8F",
+    "description": "Autonomous agent for the 369 Wallet. Reads balances and history; composes and broadcasts sends, CCTP V2 bridges, Arc App Kit swaps, ERC-20 approval revokes, and CCTP receive-message mints. Every signature originates on the user's device — the agent only proposes; the wallet executes.",
+    "homepage": "https://369wallet.xyz",
+    "repository": "https://github.com/369wallet/369-agnet-8004",
+    "license": "Apache-2.0",
+    "capabilities": [
+        "getArcBalance",
+        "getArcHistory",
+        "getRecentRecipients",
+        "lookupContact",
+        "saveContact",
+        "listContacts",
+        "sendArc",
+        "bridgeQuote",
+        "bridgeExecute",
+        "arcSwapQuote",
+        "arcSwapExecute",
+        "getPortfolio",
+        "getPrice",
+        "sweepDustQuote",
+        "sweepDustPlan",
+        "listApprovals",
+        "revokeApproval",
+        "listPendingBridges",
+        "resumeBridge"
+    ],
+    "networks": [
+        {
+            "name": "Arc Testnet",
+            "chainId": 5042002,
+            "identityRegistry": "0xAceB520444ddeDec663277FC866ab77E8085918e",
+            "validationRegistry": "0x148336926e6F21A2EC63B47BA31dD0B08E538b91"
+        }
+    ],
+    "signingKey": "0x1Fd0e803880C9A952d3751Eadfc7653927EcaE8F",
+    "recommendationSchema": {
+        "type": "eip712",
+        "name": "369AgentRecommendation",
+        "version": "1",
+        "primaryType": "AgentRecommendation",
+        "types": {
+            "AgentRecommendation": [
+                {"name": "agentId", "type": "uint256"},
+                {"name": "actionScope", "type": "bytes32"},
+                {"name": "inputHash", "type": "bytes32"},
+                {"name": "nonce", "type": "uint64"},
+                {"name": "expiresAt", "type": "uint64"}
+            ]
+        },
+        "actionScopes": {
+            "send": "0xc78fb7b2e3c9c2e712beb3f0810da51cfd22c24f931002cf7b8fe9ec042de50c",
+            "bridge": "0x0683d1c283a672fc58eb7940a0dba83ea98b96966a9ca1b030dec2c60cea4d1e",
+            "swap": "0x695543c3708653cda9d418b4ccd3be11368e40636c10c44b18cfe756b6d88b29",
+            "revoke": "0x9e10ea5887e56efeb96d4464ee7be8e8f408f1a889563a625d293d9d970cc73f",
+            "mint": "0xdaf0b3c5710379609eb5495f1ecd348cb28167711b73609fe565a72734550354"
+        }
+    },
+    "supportedFinality": {
+        "fast": 1000,
+        "standard": 2000
+    }
+}

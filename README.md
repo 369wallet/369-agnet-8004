@@ -87,11 +87,15 @@ forge script script/RegisterAgent.s.sol:RegisterAgent \
 
 ### Deployments
 
-| Network        | AgentIdentityRegistry | ValidationRegistry |
-| -------------- | --------------------- | ------------------ |
-| Arc Testnet    | _TBD_                 | _TBD_              |
+| Network                  | AgentIdentityRegistry                          | ValidationRegistry                             |
+| ------------------------ | ---------------------------------------------- | ---------------------------------------------- |
+| Arc Testnet (5042002)    | [`0xAceB520444ddeDec663277FC866ab77E8085918e`](https://testnet.arcscan.app/address/0xAceB520444ddeDec663277FC866ab77E8085918e) | [`0x148336926e6F21A2EC63B47BA31dD0B08E538b91`](https://testnet.arcscan.app/address/0x148336926e6F21A2EC63B47BA31dD0B08E538b91) |
 
-Update this table in the PR that ships each deployment.
+### Registered agents (Arc Testnet)
+
+| Id  | Operator                                       | Manifest                                                                                                            |
+| --- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| 1   | `0x1Fd0e803880C9A952d3751Eadfc7653927EcaE8F`   | [`manifests/369-agent-v1.json`](https://raw.githubusercontent.com/369wallet/369-agnet-8004/main/manifests/369-agent-v1.json) |
 
 ---
 

@@ -21,7 +21,7 @@ import {ValidationRegistry} from "../src/ValidationRegistry.sol";
 ///   PRIVATE_KEY        — deployer key (NEVER commit)
 contract Deploy is Script {
     function run() external returns (address identity, address validation) {
-        uint256 pk = vm.envUint("PRIVATE_KEY");
+        uint256 pk = _deployerKey();
         vm.startBroadcast(pk);
 
         AgentIdentityRegistry id = new AgentIdentityRegistry();
@@ -33,5 +33,19 @@ contract Deploy is Script {
         console2.log("ValidationRegistry:   ", validation);
 
         vm.stopBroadcast();
+    }
+
+    /// @dev Accepts PRIVATE_KEY in either form:
+    ///        0x-prefixed hex      ("0xabc…")
+    ///        raw hex              ("abc…")
+    ///        decimal              ("1234…")
+    ///      so contributors do not have to remember the prefix.
+    function _deployerKey() internal view returns (uint256) {
+        try vm.envUint("PRIVATE_KEY") returns (uint256 v) {
+            return v;
+        } catch {
+            string memory raw = vm.envString("PRIVATE_KEY");
+            return vm.parseUint(string.concat("0x", raw));
+        }
     }
 }
