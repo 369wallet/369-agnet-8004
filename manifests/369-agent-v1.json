@@ -32,7 +32,8 @@
             "name": "Arc Testnet",
             "chainId": 5042002,
             "identityRegistry": "0xAceB520444ddeDec663277FC866ab77E8085918e",
-            "validationRegistry": "0x148336926e6F21A2EC63B47BA31dD0B08E538b91"
+            "validationRegistry": "0x148336926e6F21A2EC63B47BA31dD0B08E538b91",
+            "reputationRegistry": "0x6f4065ca2c34a7201aa02d3b0c8b37be77d607b5"
         }
     ],
     "signingKey": "0x1Fd0e803880C9A952d3751Eadfc7653927EcaE8F",

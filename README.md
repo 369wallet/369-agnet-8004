@@ -87,9 +87,9 @@ forge script script/RegisterAgent.s.sol:RegisterAgent \
 
 ### Deployments
 
-| Network                  | AgentIdentityRegistry                          | ValidationRegistry                             |
-| ------------------------ | ---------------------------------------------- | ---------------------------------------------- |
-| Arc Testnet (5042002)    | [`0xAceB520444ddeDec663277FC866ab77E8085918e`](https://testnet.arcscan.app/address/0xAceB520444ddeDec663277FC866ab77E8085918e) | [`0x148336926e6F21A2EC63B47BA31dD0B08E538b91`](https://testnet.arcscan.app/address/0x148336926e6F21A2EC63B47BA31dD0B08E538b91) |
+| Network                  | AgentIdentityRegistry                          | ValidationRegistry                             | ReputationRegistry                             |
+| ------------------------ | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| Arc Testnet (5042002)    | [`0xAceB520444ddeDec663277FC866ab77E8085918e`](https://testnet.arcscan.app/address/0xAceB520444ddeDec663277FC866ab77E8085918e) | [`0x148336926e6F21A2EC63B47BA31dD0B08E538b91`](https://testnet.arcscan.app/address/0x148336926e6F21A2EC63B47BA31dD0B08E538b91) | [`0x6f4065ca2c34a7201aa02d3b0c8b37be77d607b5`](https://testnet.arcscan.app/address/0x6f4065ca2c34a7201aa02d3b0c8b37be77d607b5) |
 
 ### Registered agents (Arc Testnet)
 
@@ -168,8 +168,12 @@ from the owner.
 - **Immutable, non-upgradeable.** Both contracts can be audited end
   to end; there's no proxy or admin. Fork the repo and redeploy if
   policy changes.
-- **No on-chain reputation.** Reputation is a separate concern and
-  belongs in a separate contract that reads from this validation log.
+- **Reputation lives in its own layer.** `ReputationRegistry` reads
+  from the validation log and aggregates binary user feedback
+  (FAVORABLE / UNFAVORABLE) per agent. Only the address that submitted
+  the original validation can score it — feedback is bound to lived
+  outcomes, no oracles or staking required. One feedback per
+  validation key, append-only counters.
 - **Permissionless writes.** Anyone can submit a validation provided
   the agent owner signed the recommendation hash. This lets relayers
   pay gas without privileged roles.
