@@ -27,6 +27,9 @@ number_underscore = "preserve"
 [rpc_endpoints]
 arc_testnet = "${ARC_TESTNET_RPC_URL}"
 arc_testnet_public = "https://rpc.testnet.arc.network"
+base = "${BASE_RPC_URL}"
+base_public = "https://mainnet.base.org"
 
 [etherscan]
 arc_testnet = { key = "${ARCSCAN_API_KEY}", url = "https://testnet.arcscan.app/api" }
+base = { key = "${BASESCAN_API_KEY}", chain = 8453, url = "https://api.basescan.org/api" }

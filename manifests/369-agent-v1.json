@@ -34,6 +34,13 @@
             "identityRegistry": "0xAceB520444ddeDec663277FC866ab77E8085918e",
             "validationRegistry": "0x148336926e6F21A2EC63B47BA31dD0B08E538b91",
             "reputationRegistry": "0x6f4065ca2c34a7201aa02d3b0c8b37be77d607b5"
+        },
+        {
+            "name": "Base",
+            "chainId": 8453,
+            "identityRegistry": "0x8517e1ee7F3C12Bc2E389c4b9e6042dCf630f315",
+            "validationRegistry": "0xAceB520444ddeDec663277FC866ab77E8085918e",
+            "reputationRegistry": "0x148336926e6F21A2EC63B47BA31dD0B08E538b91"
         }
     ],
     "signingKey": "0x1Fd0e803880C9A952d3751Eadfc7653927EcaE8F",

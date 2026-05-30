@@ -12,7 +12,10 @@ Two contracts:
 | `AgentIdentityRegistry` | On-chain identity for autonomous agents — permissionless registration, owner-managed manifest URI, transferable ownership. |
 | `ValidationRegistry`    | Append-only log linking signed agent recommendations to the on-chain actions they triggered. Anyone can submit; the agent owner's signature is enforced. |
 
-**Status:** Testnet (Arc Testnet). Mainnet deployment pending audit.
+**Status:** Live on **Base mainnet** (chain 8453) and **Arc Testnet**
+(chain 5042002). The contracts are immutable and non-upgradeable; no
+external audit has been commissioned yet, so integrate with that in
+mind — see [SECURITY.md](./SECURITY.md).
 
 ---
 
@@ -85,17 +88,34 @@ forge script script/RegisterAgent.s.sol:RegisterAgent \
     --broadcast
 ```
 
+The scripts are chain-agnostic — swap the `--rpc-url` alias to target a
+different network. The `base` alias (chain 8453) is preconfigured in
+`foundry.toml`; set `BASE_RPC_URL` (or use the public `base_public`
+endpoint) and deploy the same way:
+
+```bash
+export BASE_RPC_URL=https://mainnet.base.org
+
+forge script script/Deploy.s.sol:Deploy --rpc-url base --broadcast --slow
+
+VALIDATION_REGISTRY=0x... \
+forge script script/DeployReputation.s.sol:DeployReputation \
+    --rpc-url base --broadcast --slow
+```
+
 ### Deployments
 
 | Network                  | AgentIdentityRegistry                          | ValidationRegistry                             | ReputationRegistry                             |
 | ------------------------ | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| Base (8453)              | [`0x8517e1ee7F3C12Bc2E389c4b9e6042dCf630f315`](https://basescan.org/address/0x8517e1ee7F3C12Bc2E389c4b9e6042dCf630f315) | [`0xAceB520444ddeDec663277FC866ab77E8085918e`](https://basescan.org/address/0xAceB520444ddeDec663277FC866ab77E8085918e) | [`0x148336926e6F21A2EC63B47BA31dD0B08E538b91`](https://basescan.org/address/0x148336926e6F21A2EC63B47BA31dD0B08E538b91) |
 | Arc Testnet (5042002)    | [`0xAceB520444ddeDec663277FC866ab77E8085918e`](https://testnet.arcscan.app/address/0xAceB520444ddeDec663277FC866ab77E8085918e) | [`0x148336926e6F21A2EC63B47BA31dD0B08E538b91`](https://testnet.arcscan.app/address/0x148336926e6F21A2EC63B47BA31dD0B08E538b91) | [`0x6f4065ca2c34a7201aa02d3b0c8b37be77d607b5`](https://testnet.arcscan.app/address/0x6f4065ca2c34a7201aa02d3b0c8b37be77d607b5) |
 
-### Registered agents (Arc Testnet)
+### Registered agents
 
-| Id  | Operator                                       | Manifest                                                                                                            |
-| --- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| 1   | `0x1Fd0e803880C9A952d3751Eadfc7653927EcaE8F`   | [`manifests/369-agent-v1.json`](https://raw.githubusercontent.com/369wallet/369-agnet-8004/main/manifests/369-agent-v1.json) |
+| Network              | Id  | Operator                                       | Manifest                                                                                                            |
+| -------------------- | --- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Base (8453)          | 1   | `0x1Fd0e803880C9A952d3751Eadfc7653927EcaE8F`   | [`manifests/369-agent-v1.json`](https://raw.githubusercontent.com/369wallet/369-agnet-8004/main/manifests/369-agent-v1.json) |
+| Arc Testnet (5042002)| 1   | `0x1Fd0e803880C9A952d3751Eadfc7653927EcaE8F`   | [`manifests/369-agent-v1.json`](https://raw.githubusercontent.com/369wallet/369-agnet-8004/main/manifests/369-agent-v1.json) |
 
 ---
 
