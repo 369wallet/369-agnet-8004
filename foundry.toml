@@ -32,4 +32,4 @@ base_public = "https://mainnet.base.org"
 
 [etherscan]
 arc_testnet = { key = "${ARCSCAN_API_KEY}", url = "https://testnet.arcscan.app/api" }
-base = { key = "${BASESCAN_API_KEY}", chain = 8453, url = "https://api.basescan.org/api" }
+base = { key = "${BASESCAN_API_KEY}", chain = 8453, url = "https://api.etherscan.io/v2/api?chainid=8453" }
